@@ -8,7 +8,7 @@
     "dev": "node server.js",
     "public": "node server.js --public",
     "electron": "electron .",
-    "build": "electron-builder --win --x64",
+    "build:exe": "electron-builder --win --x64",
     "build:dir": "electron-builder --win --x64 --dir"
   },
   "dependencies": {
@@ -23,7 +23,8 @@
   "devDependencies": {
     "@electron/packager": "^20.0.1",
     "electron": "^28.3.3",
-    "electron-builder": "^24.13.3"
+    "electron-builder": "^24.13.3",
+    "railway": "github:railwayapp/railway-ts-sdk"
   },
   "build": {
     "appId": "com.musicbox.player",
