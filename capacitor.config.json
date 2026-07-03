@@ -1,0 +1,14 @@
+{
+  "appId": "com.musicbox.player",
+  "appName": "MusicBox",
+  "webDir": "www",
+  "server": {
+    "url": "https://musicbox2024.loca.lt",
+    "androidScheme": "https"
+  },
+  "android": {
+    "allowMixedContent": true,
+    "captureInput": true,
+    "webContentsDebuggingEnabled": true
+  }
+}
