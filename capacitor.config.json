@@ -3,7 +3,7 @@
   "appName": "MusicBox",
   "webDir": "www",
   "server": {
-    "url": "https://musicbox2024.loca.lt",
+    "url": "https://musicbox-production.up.railway.app"
     "androidScheme": "https"
   },
   "android": {

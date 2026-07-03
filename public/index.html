@@ -625,7 +625,7 @@ body {
 <script>
 // ========== API地址管理 ==========
 // 固定公网地址（EXE自动建立隧道，APK自动连接）
-const PUBLIC_URL = 'https://musicbox2024.loca.lt';
+const PUBLIC_URL = 'https://musicbox-production.up.railway.app';
 
 // 自动检测环境并设置API地址
 let API_BASE = localStorage.getItem('serverUrl') || '';
@@ -635,8 +635,7 @@ async function autoConnectPublic() {
   if (API_BASE) return;
   try {
     const resp = await fetch(PUBLIC_URL + '/api/playlist/top', {
-      signal: AbortSignal.timeout(5000),
-      headers: { 'Bypass-Tunnel-Reminder': 'true' }
+      signal: AbortSignal.timeout(5000)
     });
     const data = await resp.json();
     if (data.success) {
@@ -649,11 +648,7 @@ async function autoConnectPublic() {
 }
 
 function apiFetch(path, options = {}) {
-  // 如果页面已从公网加载，直接用相对路径；否则拼接API_BASE
   const url = API_BASE ? API_BASE + path : path;
-  // 绕过localtunnel确认页面
-  options.headers = options.headers || {};
-  options.headers['Bypass-Tunnel-Reminder'] = 'true';
   return fetch(url, options);
 }
 
@@ -1331,9 +1326,7 @@ async function testConnection() {
   if (!url) return showToast('请先输入服务器地址');
   showToast('正在测试连接...');
   try {
-    const resp = await fetch(url + '/api/playlist/top', {
-      headers: { 'Bypass-Tunnel-Reminder': 'true' }
-    });
+    const resp = await fetch(url + '/api/playlist/top');
     const data = await resp.json();
     if (data.success) { showToast('✅ 连接成功！'); }
     else { showToast('❌ 服务器响应异常'); }
