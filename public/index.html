@@ -406,8 +406,7 @@ body {
 
   .player-extra { order: 3; justify-content: center; gap: 8px; }
   .volume-control { display: none; }
-  .quality-selector { order: 1; }
-  .quality-trigger { padding: 3px 10px; font-size: 11px; }
+  .quality-selector { display: none; }
   .quality-dropdown { left: auto; right: 0; transform: none; bottom: calc(100% + 6px); }
 
   .source-switcher { display: flex; overflow-x: auto; -webkit-overflow-scrolling: touch; gap: 4px; padding-bottom: 4px; max-width: 100%; }
@@ -434,6 +433,22 @@ body {
     font-size: 24px; cursor: pointer; padding: 4px 8px;
   }
   .lyrics-modal .lyrics-content { font-size: 15px; line-height: 2.4; flex: 1; }
+  .lyrics-modal-footer {
+    flex-shrink: 0; padding: 12px 0 8px; border-top: 1px solid var(--border);
+    margin-top: 16px;
+  }
+  .lyrics-volume {
+    display: flex; align-items: center; gap: 10px; justify-content: center;
+  }
+  .lyrics-volume span { font-size: 18px; }
+  .lyrics-volume .volume-slider {
+    flex: 1; max-width: 200px; height: 4px; border-radius: 2px;
+    background: var(--border); appearance: none; outline: none;
+  }
+  .lyrics-volume .volume-slider::-webkit-slider-thumb {
+    appearance: none; width: 16px; height: 16px; border-radius: 50%;
+    background: var(--accent); cursor: pointer;
+  }
 }
 
 /* 响应式 - 小屏手机 */
@@ -645,6 +660,12 @@ body {
   </div>
   <div class="lyrics-content" id="lyricsModalContent">
     <div class="lyrics-empty">播放歌曲后显示歌词</div>
+  </div>
+  <div class="lyrics-modal-footer">
+    <div class="lyrics-volume">
+      <span>🔊</span>
+      <input type="range" class="volume-slider" min="0" max="100" value="80" oninput="setVolume(this.value);document.getElementById('volumeSlider').value=this.value">
+    </div>
   </div>
 </div>
 
