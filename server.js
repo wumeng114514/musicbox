@@ -105,7 +105,7 @@ function formatKuwoSong(s) {
     name: s.SONGNAME || '未知',
     artist: s.ARTIST || s.AARTIST || '未知',
     album: s.ALBUM || '',
-    albumPic: '',
+    albumPic: s.ALBUMID ? `https://img2.kuwo.cn/star/albumcover/300/${s.ALBUMID}.jpg` : '',
     duration: parseInt(s.DURATION || 0) * 1000,
     platform: 'kuwo',
     platformUrl: `https://www.kuwo.cn/play/detail/${s.MUSICRID}`
@@ -153,7 +153,7 @@ app.get('/api/search/all', async (req, res) => {
         name: song.songname,
         artist: song.singername || '未知',
         album: song.album_name || '',
-        albumPic: '',
+        albumPic: song.trans_param?.union_cover?.replace('{size}', '300') || '',
         duration: song.duration * 1000 || 0,
         platform: 'kugou',
         platformUrl: `https://www.kugou.com/song/#hash=${song.hash}`
